@@ -7,9 +7,12 @@ def process_webhook(payload: dict) -> dict:
     embed_object = {
         "title": title,
         "fields": fields,
-        "timestamp": datetime.utcnow().isoformat(),
     }
-    return embed_object
+    embed_object["timestamp"] = datetime.utcnow().isoformat()
+
+    avatar_url = get_avatar_url(payload)
+
+    return embed_object, avatar_url
 
 def generate_title(json_data):
     if "hookType" in json_data:
@@ -37,3 +40,9 @@ def flatten_json(y):
 
     flatten(y)
     return out
+
+def get_avatar_url(json_data):
+    if "hookType" in json_data:
+        return "https://github.com/sinamics/ztnet/blob/main/public/ztnet_300x300.png?raw=true"
+    else:
+        return None
