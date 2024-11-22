@@ -3,7 +3,7 @@ import os
 import requests
 
 
-async def send_webhook_message(webhook_id: str, webhook_token: str, embed_object: dict, avatar_url: str = None):
+def send_webhook_message(webhook_id: str, webhook_token: str, embed_object: dict, avatar_url: str = None):
     webhook_url = f"https://discord.com/api/webhooks/{webhook_id}/{webhook_token}"
     # JSON/Form param options: https://discord.com/developers/docs/resources/webhook#execute-webhook
     data = {
