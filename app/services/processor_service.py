@@ -1,9 +1,13 @@
+from datetime import datetime
+
+
 def process_webhook(payload: dict) -> dict:
     title = generate_title(payload)
     fields = extract_fields(payload)
     embed_message = {
         "title": title,
-        "fields": fields
+        "fields": fields,
+        "timestamp": datetime.utcnow().isoformat(),
     }
     return embed_message
 
