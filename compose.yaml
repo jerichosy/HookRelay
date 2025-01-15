@@ -16,6 +16,16 @@ services:
     # ports:
     #   - 8000:8000
     restart: unless-stopped
+    develop:
+      watch:
+        - action: sync+restart
+          path: .
+          target: /app
+          ignore:
+            - ./requirements.txt
+            - ./.git
+        - action: rebuild
+          path: ./requirements.txt
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
