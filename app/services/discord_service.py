@@ -10,5 +10,14 @@ def send_webhook_message(webhook_id: str, webhook_token: str, embed_object: dict
     }
     if avatar_url is not None:
         data["avatar_url"] = avatar_url
+
+    import json
+    print(json.dumps(data))
+
     response = requests.post(webhook_url, json=data)
+    print(response.__dict__)
+    print(response.status_code)
     response.raise_for_status()
+
+    # TODO: Return the actual responses
+    return response.status_code
